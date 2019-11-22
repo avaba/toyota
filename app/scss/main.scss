@@ -251,4 +251,15 @@ h1, h2, h3 {
 	}
 }
 
+.quiz	{
+	margin-bottom: 500px;
+	padding-top: 100px;
+	fieldset{
+		display:none;
+	}
+	.first{
+		display:block;
+	}
+}
+
 @import "media"; // Always at the end

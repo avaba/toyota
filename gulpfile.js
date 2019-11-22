@@ -45,11 +45,10 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
-		'app/libs/fullpage/jquery.pagepiling.min.js',
 		'app/libs/noUiSlider/nouislider.min.js',
 		'app/libs/noUiSlider/wNumb.min.js',
 		'app/libs/mask/mask.js',
-		'app/libs/matchMedia/matchMedia.js',
+		'app/libs/jquery-quiz/dist/jquery.quiz-min.js',
 		'app/js/common.js', // Always at the end
 		])
 	.pipe(concat('scripts.min.js'))
