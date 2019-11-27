@@ -265,11 +265,170 @@ h2 {
 .quiz	{
 	margin-bottom: 500px;
 	padding-top: 100px;
-	fieldset{
-		display:none;
-	}
-	.first{
-		display:block;
+	&__item {
+		display: none;
+		position: relative;
+		padding-bottom: 100px;
+		min-height: 510px;
+		opacity: 0;
+		.h3 {
+			color: $accent;
+			font-weight: bold;
+			font-size: 1.375em;
+			&.black {
+				color: $text;
+			}
+		}
+		.des {
+			color: $gray;
+			margin-bottom: 40px;
+		}
+		.inputBlock {
+			margin-top: 40px;
+		}
+		label {
+			margin-bottom: 20px;
+			position: relative;
+			&.error {
+				span {
+					&:before {
+						animation: error .6s ease forwards;
+					} 
+				}
+			}
+			input {
+				display: none;
+				&:checked + span {
+					&:after {
+						opacity: 1;
+						transition: all .3s;
+					}
+				}
+			}
+			span {
+				font-size: 1.250em;
+				display: inline-block;
+				padding-left: 40px;
+				transition: all .3s;
+				&:before {
+					content: '';
+					position: absolute;
+					left: 0;
+					top: -2px;
+					width: 27px;
+					height: 27px;
+					border: 1px solid $border;
+					box-sizing: border-box;
+					box-shadow: inset 0px 0px 6px rgba(22, 22, 22, 0.1);
+					border-radius: 8px;
+					transition: all .3s;
+				}
+				&:after {
+					content: '';
+					position: absolute;
+					left: 7px;
+					top: 5px;
+					background: $accent;
+					border-radius: 3px;
+					width: 13px;
+					height: 13px;
+					opacity: 0;
+					transition: all .3s;
+				}
+			}
+			&:hover {
+				span {
+					color: $accent;
+					cursor: pointer;
+					transition: all .3s;
+					&:before {
+						border-color: $accent;
+						transition: all .3s;
+					}
+				}
+			}
+		}
+		&.active {
+			display: block;
+			animation: fadeIn .5s ease forwards;
+		}
+		&.last {
+			min-height: auto;
+			border-top: 1px solid $border;
+			margin-top: 30px;
+			padding-top: 30px;
+			padding-bottom: 0;
+			input.phone {
+				display: inline-block;
+				border: 1px solid $border;
+				color: $text;
+				box-shadow: inset 0px 0px 6px rgba(22, 22, 22, 0.1);
+				border-radius: 4px;
+				height: 50px;
+				line-height: 50px;
+				padding-left: 15px;
+				width: 280px;
+				margin-bottom: 25px;
+			}
+			.last__text {
+				margin-bottom: 40px;
+			}
+			.quiz__btn {
+				position: relative;
+				margin-bottom: 25px;
+			}
+			label.soglas {
+				span {
+					font-size: 0.875em;
+					padding-left: 25px;
+					&:before {
+						width: 14px;
+						height: 14px;
+						border-radius: 4px;
+						top: 4px;
+					}
+					&:after {
+						width: 6px;
+						height: 6px;
+						left: 4px;
+						top: 8px;
+					}
+					&:hover {
+						color: $text;
+					}
+				}
+				a {
+					color: $text;
+					text-decoration: underline;
+					transition: all .3s;
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+			.loading {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #fff;
+				z-index: 10;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+				img {
+					animation: rotate 1s linear infinite;
+				}
+			}
+			&.active {
+				.loading {
+					animation: fadeInOut 0.5s linear forwards;
+					animation-delay: 2s;
+				}
+			}
+		}
 	}
 	&__subtitle {
 		color: #9D9D9D;
@@ -278,96 +437,98 @@ h2 {
 		padding: 20px 0;
 		margin-bottom: 30px;
 	}
-	.h3 {
-		color: $accent;
-		font-weight: bold;
-		font-size: 1.375em;
-	}
-	.des {
-		color: $gray;
-		margin-bottom: 40px;
-	}
-	label {
-		margin-bottom: 20px;
-		position: relative;
-		input {
-			display: none;
-			&:checked + span {
-				&:after {
-					opacity: 1;
-					transition: all .3s;
-				}
-			}
-		}
-		span {
-			font-size: 1.250em;
-			display: inline-block;
-			padding-left: 40px;
-			transition: all .3s;
-			&:before {
-				content: '';
-				position: absolute;
-				left: 0;
-				top: -2px;
-				width: 27px;
-				height: 27px;
-				border: 1px solid $border;
-				box-sizing: border-box;
-				box-shadow: inset 0px 0px 6px rgba(22, 22, 22, 0.1);
-				border-radius: 8px;
-				transition: all .3s;
-			}
-			&:after {
-				content: '';
-				position: absolute;
-				left: 7px;
-				top: 5px;
-				background: $accent;
-				border-radius: 3px;
-				width: 13px;
-				height: 13px;
-				opacity: 0;
-				transition: all .3s;
-			}
-		}
-		&:hover {
-			span {
-				color: $accent;
-				cursor: pointer;
-				transition: all .3s;
-				&:before {
-					border-color: $accent;
-					transition: all .3s;
-				}
-			}
-		}
-	}
-	.next_btn {
-		position: relative;
-		display: -webkit-flex;
-		display: -moz-flex;
-		display: -ms-flex;
-		display: -o-flex;
+	&__btn {
 		display: flex;
-		&:after {
-			content: '';
-			display: inline-block;
-			width: 19px;
-			height: 19px;
-			background: url(../img/right-arrow.svg) no-repeat;
-			background-position: 50%;
-			background-size: cover;
-			position: relative;
-			right: 0;
-			margin-left: 15px;
-			transition: all .3s;
-		}
-		&:hover {
-			&:after {
-				right: -10px;
-				transition: all .3s;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		.pre_btn {
+			margin-right: 20px;
+			border: 1px solid $border;
+			color: $gray;
+			background: #fff;
+			&:hover {
+				color: $accent;
+				border-color: $accent;
 			}
 		}
+		.next_btn {
+			position: relative;
+			display: -webkit-flex;
+			display: -moz-flex;
+			display: -ms-flex;
+			display: -o-flex;
+			display: flex;
+			&.done {
+				&:after {
+					display: none;
+				}
+			}
+			&:after {
+				content: '';
+				display: inline-block;
+				width: 19px;
+				height: 19px;
+				background: url(../img/right-arrow.svg) no-repeat;
+				background-position: 50%;
+				background-size: cover;
+				position: relative;
+				right: 0;
+				margin-left: 15px;
+				transition: all .3s;
+			}
+			&:hover {
+				&:after {
+					right: -10px;
+					transition: all .3s;
+				}
+			}
+		}
+	}
+}
+
+@keyframes error { 
+	0% { 
+		box-shadow: 0px 0px 0px 0px rgba(219, 6, 31, 0.1);
+	} 
+	50% { 
+		box-shadow: 0px 0px 0px 6px rgba(219, 6, 31, 0.1);
+	} 
+	75% {
+		box-shadow: 0px 0px 0px 0px rgba(219, 6, 31, 0.1);
+	}
+	100% {
+		box-shadow: inset 0px 0px 6px rgba(22, 22, 22, 0.1);
+	}
+}
+
+@keyframes fadeIn { 
+	0% { 
+		opacity: 0;
+		display: none;
+	}
+	100% {
+		opacity: 1;
+		display: block;
+	}
+}
+
+@keyframes fadeInOut { 
+	0% { 
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		z-index: -1;
+	}
+}
+
+@keyframes rotate { 
+	0% { 
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
 	}
 }
 
