@@ -40,6 +40,10 @@ body {
 	}
 }
 
+img {
+	max-width: 100%;
+}
+
 .text-center {
 	text-align: center;
 }
@@ -54,8 +58,12 @@ a {
 	}
 }
 
-h1, h2, h3 {
+h1, h2, h3, .h1, .h2, .h3 {
 	font-family: 'Toyota Display';
+}
+
+h2 {
+	font-size: 2.250em;
 }
 
 .head {
@@ -120,6 +128,9 @@ h1, h2, h3 {
 	transition: all .3s;
 	border-radius: 100px;
 	border: 0;
+	&:focus {
+		outline: 0;
+	}
 	&:hover {
 		background: $hover;
 		transition: all .3s;
@@ -259,6 +270,104 @@ h1, h2, h3 {
 	}
 	.first{
 		display:block;
+	}
+	&__subtitle {
+		color: #9D9D9D;
+		text-transform: uppercase;
+		border-bottom: 1px solid #D8D8D8;
+		padding: 20px 0;
+		margin-bottom: 30px;
+	}
+	.h3 {
+		color: $accent;
+		font-weight: bold;
+		font-size: 1.375em;
+	}
+	.des {
+		color: $gray;
+		margin-bottom: 40px;
+	}
+	label {
+		margin-bottom: 20px;
+		position: relative;
+		input {
+			display: none;
+			&:checked + span {
+				&:after {
+					opacity: 1;
+					transition: all .3s;
+				}
+			}
+		}
+		span {
+			font-size: 1.250em;
+			display: inline-block;
+			padding-left: 40px;
+			transition: all .3s;
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: -2px;
+				width: 27px;
+				height: 27px;
+				border: 1px solid $border;
+				box-sizing: border-box;
+				box-shadow: inset 0px 0px 6px rgba(22, 22, 22, 0.1);
+				border-radius: 8px;
+				transition: all .3s;
+			}
+			&:after {
+				content: '';
+				position: absolute;
+				left: 7px;
+				top: 5px;
+				background: $accent;
+				border-radius: 3px;
+				width: 13px;
+				height: 13px;
+				opacity: 0;
+				transition: all .3s;
+			}
+		}
+		&:hover {
+			span {
+				color: $accent;
+				cursor: pointer;
+				transition: all .3s;
+				&:before {
+					border-color: $accent;
+					transition: all .3s;
+				}
+			}
+		}
+	}
+	.next_btn {
+		position: relative;
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		&:after {
+			content: '';
+			display: inline-block;
+			width: 19px;
+			height: 19px;
+			background: url(../img/right-arrow.svg) no-repeat;
+			background-position: 50%;
+			background-size: cover;
+			position: relative;
+			right: 0;
+			margin-left: 15px;
+			transition: all .3s;
+		}
+		&:hover {
+			&:after {
+				right: -10px;
+				transition: all .3s;
+			}
+		}
 	}
 }
 

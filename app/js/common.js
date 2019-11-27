@@ -47,20 +47,36 @@ if (count != 0 || y == 0) {
 	return true;
 }
 });
+
 /*---------------------------------------------------------*/
+
+$('fieldset').on('change', 'input[type=checkbox]', function() {
+	var checkVal = false;
+	$('fieldset').find('input[type=checkbox]').each(function() {
+		var test = $(this).prop('checked');
+		if (test) {
+			checkVal = true;
+		}
+	});
+	if (checkVal) {
+		$('.next_btn').removeClass('done');
+	} else {
+		$('.next_btn').addClass('done');
+	}
+});
+
+/*---------------------------------------------------------*/
+
 $(".next_btn").click(function() { // Function Runs On NEXT Button Click
 	var test = 0;
-	$(this).parent('fieldset').find('input[type=checkbox]').each(function(i,e,a){
-		console.log(e,$(e).prop('checked'));
+	$(this).parent().parent('fieldset').find('input[type=checkbox]').each(function(i,e,a){
 		test += $(e).prop('checked');
 	})
 	if (test>0) {
-		$(this).parent().next().fadeIn('slow');
-		$(this).parent().css({
+		$(this).parent().parent().next().fadeIn('slow');
+		$(this).parent().parent().css({
 			'display': 'none'
 		});
-	} else {
-		alert('fu');
 	}
 });
 $(".pre_btn").click(function() { // Function Runs On PREVIOUS Button Click
