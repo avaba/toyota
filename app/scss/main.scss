@@ -66,6 +66,10 @@ h2 {
 	font-size: 2.250em;
 }
 
+.margin {
+	margin: 6.250em 0;
+}
+
 .head {
 	padding: 13.5px 0;
 	background: #fff;
@@ -128,6 +132,17 @@ h2 {
 	transition: all .3s;
 	border-radius: 100px;
 	border: 0;
+	&.white {
+		border: 1px solid $accent;
+		background: #fff;
+		color: $accent;
+	}
+	&.w100 {
+		display: block;
+		padding: 15px 5px;
+		width: 100%;
+		text-align: center;
+	}
 	&:focus {
 		outline: 0;
 	}
@@ -235,41 +250,49 @@ h2 {
 			}
 		}
 	}
-	.redLine {
-		background: $accent;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		padding: 36px 0;
-		&__item {
-			position: relative;
-			padding-left: 75px;
-			img {
-				position: absolute;
-				left: 0;
-				top: 50%;
-				width: 55px;
-				transform: translate(0, -50%);
-			}
-			p {
-				margin: 0;
-				&:first-of-type {
-					margin-bottom: 10px;
-				}
+}
+
+.redLine, .grayLine {
+	background: $accent;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 36px 0;
+	color: #fff;
+	&__item {
+		position: relative;
+		padding-left: 75px;
+		img {
+			position: absolute;
+			left: 0;
+			top: 50%;
+			width: 55px;
+			transform: translate(0, -50%);
+		}
+		p {
+			margin: 0;
+			&:first-of-type {
+				margin-bottom: 10px;
 			}
 		}
 	}
 }
 
+.grayLine {
+	position: relative;
+	padding: 90px 0;
+	background: $bgGray;
+	color: #000;
+}
+
 .quiz	{
-	margin-bottom: 500px;
-	padding-top: 100px;
+	position: relative;
 	&__item {
 		display: none;
 		position: relative;
-		padding-bottom: 100px;
-		min-height: 510px;
+		padding-bottom: 80px;
+		min-height: 490px;
 		opacity: 0;
 		.h3 {
 			color: $accent;
@@ -287,7 +310,7 @@ h2 {
 			margin-top: 40px;
 		}
 		label {
-			margin-bottom: 20px;
+			margin-bottom: 22px;
 			position: relative;
 			&.error {
 				span {
@@ -308,7 +331,7 @@ h2 {
 			span {
 				font-size: 1.250em;
 				display: inline-block;
-				padding-left: 40px;
+				padding-left: 45px;
 				transition: all .3s;
 				&:before {
 					content: '';
@@ -435,6 +458,7 @@ h2 {
 		text-transform: uppercase;
 		border-bottom: 1px solid #D8D8D8;
 		padding: 20px 0;
+		padding-top: 10px;
 		margin-bottom: 30px;
 	}
 	&__btn {
@@ -485,6 +509,55 @@ h2 {
 			}
 		}
 	}
+
+	#rotator {
+		position: absolute;
+		top: 14px;
+		left: 50%;
+		width: 100%;
+		margin-left: 135px;
+		height: 570px;
+		overflow: hidden;
+		ul {
+			padding: 0;
+			margin: 0;
+			display: block;
+			position: relative;
+			height: 100%;
+			&:before {
+				content: '';
+				position: absolute;
+				border: 115px solid transparent;
+				border-left: 29px solid white;
+				border-top: 455px solid white;
+				z-index: 20;
+			}
+		}
+		li {
+			position:absolute; 
+			list-style: none;
+			height: 100%;
+			&.show {
+				z-index:10;
+				img {
+					animation: rotator 5s ease forwards;
+				}
+			}
+			img {
+				height: 100%;
+				transform: scale(1.1);
+			}
+		}
+	}
+}
+
+@keyframes rotator { 
+	0% { 
+		transform: scale(1);
+	} 
+	100% {
+		transform: scale(1.1);
+	}
 }
 
 @keyframes error { 
@@ -531,5 +604,114 @@ h2 {
 		transform: rotate(360deg);
 	}
 }
+
+.product {
+	&__inner {
+		margin-top: 3.750em;
+	}
+	&__item {
+		width: 100%;
+		border-color: $border;
+		border-radius: 4px;
+		background: #fff;
+		margin-bottom: 30px;
+		transition: all .3s;
+		&:hover {
+			box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.12);
+			transition: all .3s;
+		}
+		h3 {
+			font-size: 1.375em;
+		}
+		&_price {
+			margin-bottom: 15px;
+			span {
+				display: inline-block;
+				background: $accent;
+				color: #fff;
+				font-weight: bold;
+				font-size: 1.125em;
+				padding: 5px 10px;
+			}
+		}
+		&_list {
+			margin: 0;
+			padding: 0;
+			padding-top: 20px;
+			list-style: none;
+			border-top: 1px solid $border;
+			li {
+				position: relative;
+				padding-left: 15px;
+				margin-bottom: 10px;
+				&:before {
+					content: '';
+					position: absolute;
+					left: 0;
+					top: 8px;
+					background: $accent;
+					height: 4px;
+					width: 4px;
+					border-radius: 100px;
+				}
+			}
+		}
+	}
+	&__img {
+		width: 100%;
+		height: 100%;
+	}
+	&__content {
+		padding: 35px;
+	}
+	&__top {
+		height: 100%;
+		padding-bottom: 103px;
+	}
+	&__bot {
+		background: $bgGray;
+		padding: 30px;
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		left: 0;
+		.call {
+			padding: 11px 5px;
+			white-space: nowrap;
+		}
+	}
+}
+
+.more {
+	margin-top: 30px;
+	&__inline {
+		display: inline-block;
+	}
+	.call {
+		display: -webkit-flex;
+		display: -moz-flex;
+		display: -ms-flex;
+		display: -o-flex;
+		display: flex;
+		align-items: center;
+		svg {
+			margin-right: 15px;
+			transition: all .3s;
+			path {
+				transition: all .3s;
+			}
+		}
+		&:hover {
+			svg {
+				transform: rotate(180deg);
+				path {
+					fill: #fff;
+					transition: all .3s;
+				}
+			}
+		}
+	}
+}
+
 
 @import "media"; // Always at the end
