@@ -14,23 +14,6 @@ jQuery(document).ready(function(){
 		}
 	});
 
-	$('#quiz').quiz({
-		questions: [
-		{
-			'q': 'A smaple question?',
-			'options': [
-			'Answer 1',
-			'Answer 2',
-			'Answer 3',
-			'Answer 4'
-			],
-			'correctIndex': 1,
-			'correctResponse': 'Custom correct response.',
-			'incorrectResponse': 'Custom incorrect response.'
-		}
-		]
-	});
-
 	$(".phone").mask("+7 (999) 999-99-99");
 
 // Function Runs On NEXT Button Click
@@ -51,6 +34,24 @@ $(".pre_btn").click(function() {
 	$(this).parent().parent().prev().addClass('active');
 	$(this).parent().parent().removeClass('active');
 });
+
+$('select').styler();
+
+$('#variant-select').on('change', function(){
+	var url = $(this).find(':selected').data('price');
+	$('#model').addClass('active').attr('src', url);
+});
+
+var inputFormat = document.getElementById('love_bar_input');
+
+love_bar.noUiSlider.on('update', function (values, handle) {
+	inputFormat.value = values[handle];
+});
+
+inputFormat.addEventListener('change', function () {
+	love_bar.noUiSlider.set(this.value);
+});
+
 });
 
 function theRotator() {

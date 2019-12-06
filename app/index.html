@@ -579,7 +579,19 @@
 								<div class="align-items-end row">
 									<div class="col-md-3">
 										<span class="bgForm__form_title">Модель</span>
-										<input type="text" placeholder="Camry">
+										<select>
+											<option data-price="img/model1.png" selected disabled>Выберите модель</option>
+											<option data-price="img/model1.png">Camry</option>
+											<option data-price="img/model2.png">RAV4</option>
+											<option data-price="img/model3.png">Corolla</option>
+											<option data-price="img/model4.png">LC 150 Prado</option>
+											<option data-price="img/model5.png">LC 200</option>
+											<option data-price="img/model6.png">Fortuner</option>
+											<option data-price="img/model7.png">CH-R</option>
+											<option data-price="img/model8.png">Hilux</option>
+											<option data-price="img/model9.png">Alphard</option>
+											<option data-price="img/model10.png">Supra</option>
+										</select>
 									</div>
 									<div class="col-md-3">
 										<span class="bgForm__form_title">Предложение (в рублях)</span>
@@ -587,7 +599,7 @@
 									</div>
 									<div class="col-md-3">
 										<span class="bgForm__form_title">Ваш телефон</span>
-										<input class="phone" type="text" placeholder="+ 7 (___) ___-__-__">
+										<input class="phone" type="text" placeholder="+7 (___) ___-__-__">
 									</div>
 									<div class="col-md-3">
 										<button class="call w100">Отправить</button>
@@ -611,15 +623,36 @@
 							<div class="calc__benefit">Оформление <b>1 день!</b></div>
 							<div class="calc__benefit">Платеж от <b>6 000 Р./мес.</b></div>
 							<form class="calc__form">
-								<p class="calc__form_h3">Выберите модель</p>
-								<div class="row">
-									<div class="col-md-6">
-										<input type="text">
+								<fieldset>
+									<p class="calc__form_h3">Выберите модель</p>
+									<div class="justify-content-between align-items-center row">
+										<div class="col-md-6">
+											<div class="modelSelect">
+												<select id="variant-select">
+													<option data-price="img/model1.png" selected disabled>Выберите модель</option>
+													<option data-price="img/model1.png">Camry</option>
+													<option data-price="img/model2.png">RAV4</option>
+													<option data-price="img/model3.png">Corolla</option>
+													<option data-price="img/model4.png">LC 150 Prado</option>
+													<option data-price="img/model5.png">LC 200</option>
+													<option data-price="img/model6.png">Fortuner</option>
+													<option data-price="img/model7.png">CH-R</option>
+													<option data-price="img/model8.png">Hilux</option>
+													<option data-price="img/model9.png">Alphard</option>
+													<option data-price="img/model10.png">Supra</option>
+												</select>
+												<div class="modelSelect__img">
+													<img id="model" src="img/model1.png" alt="">
+												</div>
+											</div>
+										</div>
 									</div>
-									<div class="col-md-6">
-										<img src="img/model1.png" alt="">
+									<p class="calc__form_h3">Первоначальный взнос</p>
+									<div class="calc__bar">
+										<div id="money"></div>
+										<input type="hidden" id="calc_bar_input">
 									</div>
-								</div>
+								</fieldset>
 							</form>
 						</div>
 					</div>

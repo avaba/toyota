@@ -70,6 +70,30 @@ h2 {
 	margin: 6.250em 0;
 }
 
+input, button, textarea, select {
+	font-family: $default-font !important;
+	&::-moz-placeholder {
+		color: #666;
+		font-family: $default-font !important;
+	}
+	&::-webkit-input-placeholder { 
+		color: #666;
+		font-family: $default-font !important; 
+	}
+	&:-ms-input-placeholder { 
+		color: #666;
+		font-family: $default-font !important; 
+	}
+	&::-ms-input-placeholder { 
+		color: #666;
+		font-family: $default-font !important; 
+	}
+	&::placeholder { 
+		color: #666;
+		font-family: $default-font !important; 
+	} 
+}
+
 .head {
 	padding: 13.5px 0;
 	background: #fff;
@@ -817,7 +841,125 @@ h2 {
 		margin-top: 30px;
 		&_h3 {
 			font-weight: bold;
-			font-size: 1.813em;
+			font-size: 1.375em;
+		}
+	}
+	.modelSelect {
+		position: relative;
+		margin-top: 5px;
+		margin-bottom: 30px;
+		&__img {
+			position: absolute;
+			top: 50%;
+			transform: translate(0, -50%);
+			right: -280px;
+			img {
+				max-width: 210px;
+			}
+		}
+		#model {
+			display: none;
+			&.active {
+				display: block;
+			}
+		}
+	}
+}
+
+.jq-select-multiple, .jq-selectbox {
+	width: 100%;
+}
+
+.jq-selectbox {
+	font-family: "Open Sans", sans-serif;
+	&__select {
+		width: 100%;
+		position: relative;
+		border-radius: 4px;
+		overflow: hidden;
+		&-text {
+			width: 100% !important;
+			border: 1px solid $border;
+			box-shadow: inset 0px 0px 6px rgba(22, 22, 22, 0.1);
+			height: 50px;
+			line-height: 50px;
+			padding-left: 15px;
+			border-radius: 4px;
+			background: #fff;
+			color: #666;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+	&__trigger {
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 50px;
+		height: 50px;
+		background: $accent url(../img/arrow-bot.svg) no-repeat;
+		background-position: 50%;
+		transition: all .3s;
+		&:hover {
+			cursor: pointer;
+			background-color: $hover;
+			transition: all .3s;
+		}
+	}
+	&__dropdown {
+		min-width: 100%;
+		background: #fff;
+		border-radius: 4px;
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			border: 1px solid $border;
+			border-radius: 4px;
+			&::-webkit-scrollbar { 
+				width: 8px; 
+				height: 8px;
+			}
+			&::-webkit-scrollbar-button {  
+				display: none;
+			}
+			&::-webkit-scrollbar-track {  
+				background-color: #999;
+			}
+			&::-webkit-scrollbar-track-piece { 
+				background-color: #ffffff;
+			}
+			&::-webkit-scrollbar-thumb { 
+				height: 50px; 
+				background-color: $border; 
+				border-radius: 0px;
+			}
+			&::-webkit-scrollbar-corner { 
+				background-color: #999;
+			}
+			&::-webkit-resizer { 
+				background-color: #666;
+			}
+			li {
+				white-space: nowrap;
+				padding: 10px 20px;
+				border-bottom: 1px solid $border;
+				&.sel {
+					color: $accent;
+				}
+				&:hover {
+					background: #f1f1f1;
+					cursor: pointer;
+				}
+				&.disabled {
+					color: #ccc;
+					&:hover {
+						background: #fff;
+						cursor: no-drop;
+					}
+				}
+			}
 		}
 	}
 }

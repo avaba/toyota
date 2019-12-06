@@ -48,7 +48,7 @@ gulp.task('scripts', function() {
 		'app/libs/noUiSlider/nouislider.min.js',
 		'app/libs/noUiSlider/wNumb.min.js',
 		'app/libs/mask/mask.js',
-		'app/libs/jquery-quiz/dist/jquery.quiz-min.js',
+		'app/libs/jQueryFormStyler/jquery.formstyler.min.js',
 		'app/js/common.js', // Always at the end
 		])
 	.pipe(concat('scripts.min.js'))
