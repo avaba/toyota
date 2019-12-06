@@ -945,6 +945,7 @@ input, button, textarea, select {
 				white-space: nowrap;
 				padding: 10px 20px;
 				border-bottom: 1px solid $border;
+				color: #000;
 				&.sel {
 					color: $accent;
 				}
