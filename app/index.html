@@ -350,7 +350,7 @@
 				</div>
 			</div>
 
-			<div id="rotator">
+			<div class="imgRight" id="rotator">
 				<ul>
 					<li class="show">
 						<img src="img/slide1.jpg" alt="">
@@ -615,7 +615,7 @@
 				</div>
 			</section>
 
-			<section class="calc margin">
+			<section class="calc quiz margin">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-5">
@@ -623,7 +623,7 @@
 							<div class="calc__benefit">Оформление <b>1 день!</b></div>
 							<div class="calc__benefit">Платеж от <b>6 000 Р./мес.</b></div>
 							<form class="calc__form">
-								<fieldset>
+								<fieldset class="quiz__item active">
 									<p class="calc__form_h3">Выберите модель</p>
 									<div class="justify-content-between align-items-center row">
 										<div class="col-md-6">
@@ -650,17 +650,76 @@
 									<p class="calc__form_h3">Первоначальный взнос</p>
 									<div class="calc__bar">
 										<div id="money"></div>
-										<input type="hidden" id="calc_bar_input">
+										<input type="hidden" id="money_bar_input">
 									</div>
+									<p class="calc__form_h3">Срок кредита</p>
+									<div class="calc__bar">
+										<div id="time"></div>
+										<input type="hidden" id="time_bar_input">
+									</div>
+									<button class="calc__next call" name="next" type="button">Рассчитать</button>
+								</fieldset>
+								<fieldset class="quiz__item last">
+									<div class="loading">
+										<div>
+											<img src="img/loading.svg" alt="">
+											<p>Пожалуйста, подождите</p>
+										</div>
+									</div>
+									<p class="last__text">Пожалуйста, укажите номер вашего телефона.<br> Вы получите подборку предложений от банков<br> по условиям кредитования</p>
+									<input type="text" class="phone" placeholder="Номер телефона" required>
+									<div class="quiz__btn">
+										<button class="submit_btn call done" name="next" type="sumbit">Получить подборку</button>
+									</div>
+									<label class="soglas">
+										<input type="checkbox" name="soglas" required>
+										<span>Я даю согласие на обработку моих<br> <a href="#">персональных данных</a></span>
+									</label>
 								</fieldset>
 							</form>
 						</div>
 					</div>
 				</div>
+				<div class="imgRight">
+					<ul>
+						<li class="show">
+							<img src="img/slide4.jpg" alt="">
+						</li>
+					</ul>
+				</div>
 			</section>
 
+			<section class="map">
+				<div id="map"></div>
+				<div class="map__form">
+					<div class="container">
+						<div class="map__item">
+							<h2>Всегда вам рады в нашем офисе</h2>
+							<div class="map__item_con">
+								<p><img src="img/Icon_address.svg" alt="Адрес">Москва, Ломоносовский<br> проспект, 298/9</p>
+								<p><img src="img/Icon_phone.svg" alt="Телефон"><a href="tel:88002000000">8 800 200 00 00</a></p>
+							</div>
+							<form>
+								<input type="text" class="phone" placeholder="Номер телефона">
+								<button class="call w100">Заказать звонок</button>
+								<label>
+									<input type="checkbox" checked>
+									<p>Я даю согласие на обработку моих <a href="#">персональных данных</a></p>
+								</label>
+							</form>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 
+		<footer class="foot">
+			<div class="container">
+				<p>Произведено<br> <a href="https://southmedia.ru/" target="blank"><img src="img/SM_logo.svg" alt="southmedia"></a></p>
+			</div>
+		</footer>
+
+		<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
 		<script src="js/scripts.min.js"></script>
 	</body>
 	</html>

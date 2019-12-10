@@ -401,7 +401,6 @@ input, button, textarea, select {
 			animation: fadeIn .5s ease forwards;
 		}
 		&.last {
-			min-height: auto;
 			border-top: 1px solid $border;
 			margin-top: 30px;
 			padding-top: 30px;
@@ -535,7 +534,7 @@ input, button, textarea, select {
 		}
 	}
 
-	#rotator {
+	.imgRight {
 		position: absolute;
 		top: 14px;
 		left: 50%;
@@ -843,6 +842,19 @@ input, button, textarea, select {
 			font-weight: bold;
 			font-size: 1.375em;
 		}
+		fieldset {
+			display: none;
+			opacity: 0;
+			min-height: auto;
+			&.active {
+				display: block;
+				animation: fadeIn .5s ease forwards;
+			}
+			&.last {
+				padding-top: 0;
+				border: 0;
+			}
+		}
 	}
 	.modelSelect {
 		position: relative;
@@ -863,6 +875,64 @@ input, button, textarea, select {
 				display: block;
 			}
 		}
+	}
+	&__bar {
+		margin: 35px 0;
+		.noUi-horizontal {
+			height: 2px;
+			box-shadow: none;
+			border: 0;
+			border-radius: 0;
+			background: $border;
+		}
+		.noUi-connect {
+			height: 5px;
+			background: $accent;
+		}
+		.noUi-connects {
+			height: 5px;
+		}
+		.noUi-base {
+			height: 5px;
+			top: -2px;
+		}
+		.noUi-handle:after, .noUi-handle:before {
+			display: none;
+		}
+		.noUi-horizontal .noUi-handle {
+			border: 1px solid #9D9D9D;
+			border-radius: 100%;
+			width: 25px;
+			height: 25px;
+			box-shadow: inset 0px 0px 6px rgba(22, 22, 22, 0.1);
+			background: #F8F8F8;
+			top: -9px;
+			&:focus {
+				outline: 0;
+			}
+			&:hover {
+				cursor: pointer;
+			}
+			&.noUi-active {
+				background: $border;
+			}
+		}
+		.noUi-horizontal .noUi-tooltip {
+			bottom: auto;
+			top: 26px;
+			border: 0;
+			background: #fff;
+			font-weight: bold;
+			padding: 0;
+		}
+		.noUi-touch-area {
+			&:hover {
+				outline: 0;
+			}
+		}
+	}
+	&__next {
+		margin-top: 25px;
 	}
 }
 
@@ -900,11 +970,9 @@ input, button, textarea, select {
 		height: 50px;
 		background: $accent url(../img/arrow-bot.svg) no-repeat;
 		background-position: 50%;
-		transition: all .3s;
 		&:hover {
 			cursor: pointer;
 			background-color: $hover;
-			transition: all .3s;
 		}
 	}
 	&__dropdown {
@@ -915,7 +983,7 @@ input, button, textarea, select {
 			padding: 0;
 			margin: 0;
 			list-style: none;
-			border: 1px solid $border;
+			box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.12);
 			border-radius: 4px;
 			&::-webkit-scrollbar { 
 				width: 8px; 
@@ -944,14 +1012,14 @@ input, button, textarea, select {
 			li {
 				white-space: nowrap;
 				padding: 10px 20px;
-				border-bottom: 1px solid $border;
 				color: #000;
 				&.sel {
 					color: $accent;
 				}
 				&:hover {
-					background: #f1f1f1;
+					background: $accent;
 					cursor: pointer;
+					color: #fff;
 				}
 				&.disabled {
 					color: #ccc;
@@ -962,6 +1030,133 @@ input, button, textarea, select {
 				}
 			}
 		}
+	}
+	&.opened {
+		.jq-selectbox__trigger {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+.map {
+	position: relative;
+	height: 730px;
+	#map {
+		height: 100%;
+		position: relative;
+	}
+	&__form {
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translate(0, -50%);
+		width: 100%;
+	}
+	&__item {
+		position: relative;
+		z-index: 5;
+		width: 380px;
+		background: #fff;
+		padding: 30px 40px;
+		box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.12);
+		border-radius: 4px;
+		&_con {
+			border-top: 1px solid $border;
+			margin-top: 15px;
+			padding-top: 23px;
+			p {
+				position: relative;
+				padding-left: 30px;
+				img {
+					position: absolute;
+					left: 0;
+					top: 4px;
+				}
+				a {
+					color: #000;
+					font-weight: bold;
+					font-size: 1.375em;
+				}
+			}
+		}
+		form {
+			background: #F8F8F8;
+			margin: 0px -40px -30px -40px;
+			padding: 30px 40px;
+			input {
+				display: block;
+				border: 1px solid $border;
+				color: $text;
+				box-shadow: inset 0px 0px 6px rgba(22, 22, 22, 0.1);
+				border-radius: 4px;
+				height: 50px;
+				line-height: 50px;
+				padding-left: 15px;
+				width: 100%;
+				margin-bottom: 25px;
+			}
+			label {
+				margin: 20px 0 0 0;
+				padding: 0;
+				position: relative;
+				display: block;
+				input {
+					display: none;
+					&:checked + p {
+						&:after {
+							opacity: 1;
+							transition: all .2s;
+						}
+					}
+				}
+				p {
+					position: relative;
+					font-size: 0.875em;
+					margin: 0;
+					padding-left: 20px;
+					&:before {
+						content: '';
+						position: absolute;
+						left: 0;
+						top: 2px;
+						width: 12px;
+						height: 12px;
+						border-radius: 4px;
+						background: #fff;
+					}
+					&:after {
+						content: '';
+						position: absolute;
+						left: 3px;
+						top: 5px;
+						width: 6px;
+						height: 6px;
+						background: $accent;
+						border-radius: 2px;
+						opacity: 0;
+						transition: all .2s;
+					}
+					a {
+						color: #000;
+						text-decoration: underline;
+						&:hover {
+							text-decoration: underline;
+							color: $accent;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.foot {
+	background: #000;
+	text-align: center;
+	color: #fff;
+	padding: 30px 0;
+	p {
+		margin: 0;
 	}
 }
 

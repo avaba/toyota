@@ -29,6 +29,12 @@ $(".next_btn").click(function() {
 		$(this).parent().parent().find('label').addTemporaryClass("error", 1000);
 	}
 });
+
+$(".calc__next").click(function() { 
+	$(this).parent().next().addClass('active');
+	$(this).parent().removeClass('active');
+});
+
 // Function Runs On PREVIOUS Button Click
 $(".pre_btn").click(function() { 
 	$(this).parent().parent().prev().addClass('active');
@@ -42,14 +48,55 @@ $('#variant-select').on('change', function(){
 	$('#model').addClass('active').attr('src', url);
 });
 
-var inputFormat = document.getElementById('love_bar_input');
+var money = document.getElementById('money');
+var time = document.getElementById('time');
 
-love_bar.noUiSlider.on('update', function (values, handle) {
+noUiSlider.create(money, {
+	start: 50,
+	connect: 'lower',
+	tooltips: true,
+	range: {
+		'min': 0,
+		'max': 100
+	},
+	format: wNumb({
+		decimals: 0,
+		suffix: '%'
+	})
+});
+
+noUiSlider.create(time, {
+	start: 12,
+	connect: 'lower',
+	tooltips: true,
+	range: {
+		'min': 0,
+		'max': 24
+	},
+	format: wNumb({
+		decimals: 0,
+		suffix: ' мес.'
+	})
+});
+
+
+var inputFormat = document.getElementById('money_bar_input');
+var inputFormatTime = document.getElementById('time_bar_input');
+
+money.noUiSlider.on('update', function (values, handle) {
 	inputFormat.value = values[handle];
 });
 
+time.noUiSlider.on('update', function (values, handle) {
+	inputFormatTime.value = values[handle];
+});
+
 inputFormat.addEventListener('change', function () {
-	love_bar.noUiSlider.set(this.value);
+	money.noUiSlider.set(this.value);
+});
+
+inputFormatTime.addEventListener('change', function () {
+	time.noUiSlider.set(this.value);
 });
 
 });
@@ -100,4 +147,34 @@ function rotate() {
 
 $(document).ready(function() {		
 	theRotator();
+});
+
+ymaps.ready(function () {
+	var myMap = new ymaps.Map('map', {
+		center: [55.669110, 37.535022],
+		zoom: 12,
+		controls: [],
+	}, {
+		searchControlProvider: 'yandex#search'
+	}),
+
+	MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+		'<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+		),
+
+	myPlacemarkWithContent = new ymaps.Placemark([55.686515, 37.550698], {
+		hintContent: 'Москва, Ломоносовский проспект, 298/9',
+		balloonContent: 'Ключавто',
+	}, {
+		iconLayout: 'default#imageWithContent',
+		iconImageHref: 'img/map.svg',
+		iconImageSize: [50, 66],
+		iconImageOffset: [-20, -50],
+		iconContentOffset: [15, 15],
+		iconContentLayout: MyIconContentLayout
+	});
+
+	myMap.geoObjects 
+	.add(myPlacemarkWithContent);
+	myMap.behaviors.disable('scrollZoom'); 
 });
