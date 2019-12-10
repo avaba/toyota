@@ -4,7 +4,61 @@
 
 // ≥1200px
 @include media-breakpoint-down(lg) {
-	
+	.menu {
+		display: none;
+	}
+	.logo {
+		margin-right: auto;
+	}
+	.home h1 {
+		font-size: 2.125em;
+	}
+	.home__h2 {
+		font-size: 1.25em;
+	}
+
+	.grayLine__item, .redLine__item {
+		margin-bottom: 36px;
+	}
+
+	.grayLine, .redLine {
+		padding-bottom: 0;
+		position: relative;
+	}
+
+	.home {
+		height: auto;
+		padding-top: 91px;
+		padding-bottom: 0;
+	}
+
+	.home__bg {
+		padding: 100px 0;
+	}
+
+	.imgRight {
+		display: none;
+	}
+
+	.margin {
+		margin: 3.25em 0;
+	}
+
+	.grayLine {
+		padding-top: 50px;
+		padding-bottom: 14px;
+	}
+
+	.product__item {
+		width: 625px;
+		margin: 0 auto;
+		margin-bottom: 30px;
+		max-width: 100%;
+	}
+
+	.calc__form .quiz__item {
+		padding-bottom: 0;
+	}
 }
 
 // ≥992px
@@ -13,11 +67,252 @@
 
 // ≥768px
 @include media-breakpoint-down(sm) {
+	.logo {
+		display: none;
+	}
+
+	.head__btn .call {
+		display: none;
+	}
+
+	.head__btn a.head__phone {
+		background: #db061f;
+		color: #fff;
+		display: inline-block;
+		padding: 0 25px;
+		height: 36px;
+		border-radius: 100px;
+		margin: 0;
+		line-height: 36px;
+	}
+
+	.head .logo2 {
+		height: 39px;
+	}
+
+	header.head {
+		padding: 10px 0;
+	}
+
+	section.home {
+		padding-top: 60px;
+	}
+
+	section.home {
+		padding-top: 60px;
+	}
+
+	.home h1 {
+		font-size: 1.875em;
+	}
+
+	p.home__h2 {
+		font-size: 1.375em;
+	}
+
+	p.home__des {
+		line-height: 1.6;
+	}
+
+	.home__form_inner input {
+		margin-bottom: 25px;
+	}
+
+	h2 {
+		font-size: 1.625em;
+	}
+
+	.quiz__item .h3 {
+		font-size: 1.250em;
+	}
+
+	.quiz__item .des {
+		font-size: 0.875em;
+	}
+
+	.quiz__item {
+		min-height: auto;
+	}
+
+	.quiz__item.last {
+		min-height: auto;
+	}
+
+	.quiz__item .h3 {
+		font-size: 1.250em;
+	}
+
+	.quiz__item .des {
+		font-size: 0.875em;
+	}
+
+	.quiz__item {
+		min-height: auto;
+	}
+
+	.quiz__item.last {
+		min-height: auto;
+	}
+
+	.product__bot {
+		position: relative;
+	}
+
+	.product__item.card {
+		overflow: hidden;
+	}
+
+	.product__top {
+		padding-bottom: 0;
+	}
+
+	.product__top .img {
+		height: 223px;
+		order: 0;
+	}
+
+	.product__top div {
+		order: 1;
+	}
+
+	.product__item {
+		width: 335px;
+		max-width: 100%;
+	}
+
+	.product__content {
+		padding: 20px;
+		padding-bottom: 10px;
+	}
+
+	.product__bot .call {
+		margin-bottom: 10px;
+	}
+
+	.product__bot {
+		padding: 20px 30px;
+		padding-bottom: 5px;
+	}
+
+	.product__bot .call {
+		font-size: 1em;
+	}
+
+	form.bgForm__form.callForm {
+		width: 250px;
+		margin: 0 auto;
+	}
+
+	.bgForm__form h2 {
+		text-align: center;
+	}
+
+	.bgForm__form input {
+		margin-bottom: 20px;
+	}
+
+	.bgForm__form_title {
+		margin-bottom: 10px;
+	}
+
+	form.bgForm__form.callForm .jq-selectbox {
+		margin-bottom: 20px;
+	}
+
+	form.bgForm__form.callForm .call.w100 {
+		margin-top: 10px;
+	}
+
+	.bgForm {
+		padding: 30px 0;
+	}
+
+	.map__form {
+		position: relative;
+		top: 0;
+		transform: translate(0);
+	}
+
+	section.map {
+		height: auto;
+	}
+
+	.map #map {
+		height: 304px;
+	}
+
+	.map__item {
+		width: auto;
+		margin: 0 -15px;
+		box-shadow: none;
+	}
 }
 
 // ≥576px
 @include media-breakpoint-down(xs) {
+	header.head .col-auto {
+		padding: 0;
+	}
 
+	header.head {
+		padding: 10px 15px;
+	}
+
+	.home__bg {
+		background: url(../img/Background.jpg) no-repeat;
+		background-size: cover;
+		background-position: 50%;
+		padding-bottom: 30px;
+	}
+
+	.home h1 {
+		font-size: 8vw;
+	}
+
+	p.home__h2 {
+		font-size: 6vw;
+	}
+
+	p.home__des {
+		font-size: 4.3vw;
+	}
+
+	.quiz h2 br {
+		display: none;
+	}
+
+	.quiz__item .h3 {
+		margin-bottom: 5px;
+	}
+
+	.quiz__item label span:before {
+		top: 0px;
+	}
+
+	.quiz__item label span:after {
+		top: 7px;
+	}
+
+	.grayLine {
+		padding-top: 30px;
+		padding-bottom: 0;
+	}
+
+	.product__inner {
+		margin-top: 25px;
+	}
+
+	.calc__form_h3 {
+		font-size: 1.250em;
+	}
+
+	.calc__bar {
+		margin-bottom: 50px;
+	}
+
+	.map__item {
+		padding: 25px 15px;
+	}
 }
 
 
@@ -40,6 +335,8 @@
 
 // ≤1200px
 @include media-breakpoint-up(xl) {
-	
+	.m-lg-hide {
+		display: none;
+	}
 }
 

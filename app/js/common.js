@@ -14,7 +14,105 @@ jQuery(document).ready(function(){
 		}
 	});
 
-	$(".phone").mask("+7 (999) 999-99-99");
+	// Узнать цену
+	$('.product > div > div > div > div  > .product__item').each(function (e) {
+		e +=1;
+		var item_name = $(this).find('h3').text();
+		$(this).after('\
+			<div class="fancybox-hidden">\
+			<div id="popup-' + e + '" class="callBack">\
+			<img src="img/title_picture.jpg" alt="">\
+			<form role="form" class="callBack__inner callForm">\
+			<p class="title">Узнать цену <br> ' + item_name + '</p>\
+			<input type="text" class="required" placeholder="Имя">\
+			<input type="text" class="phone required" placeholder="Номер телефона">\
+			<button class="call w100">Позвоните мне</button>\
+			<label class="consent">\
+			<input type="checkbox" class="required" checked>\
+			<p>Я даю согласие на обработку моих <a href="#">персональных данных</a></p>\
+			</label>\
+			</form>\
+			<div class="thanks">\
+			<div class="align-items-center row">\
+			<div class="col-12">\
+			<img src="img/сheck2.png" alt="">\
+			</div>\
+			<div class="col-12">\
+			<h3>Спасибо!</h3>\
+			<p>Ваша заявка принята. Мы свяжемся<br> с вами в ближайшее время</p>\
+			</div>\
+			</div>\
+			</div>\
+			</div>\
+			</div>');
+		$(this).find('.product__bot .row').prepend('\
+			<div class="col-md-4">\
+			<a href="#popup-' + e + '" class="call w100 fancybox">Узнать цену</a>\
+			</div>');
+	});
+
+	$(".fancybox").fancybox({
+		padding: 0,
+		closeBtn: false 
+	});
+
+$(".phone").mask("+7 (999) 999-99-99");
+
+	$('.callForm').submit(function(e) {
+
+		$(this).find('input[type="text"].required').each(function() {
+			if(!$(this).val()) {
+				$(this).addClass('has-error');
+				$(this).attr('placeholder', 'Заполните поле');
+			}
+			else {
+				$(this).removeClass('has-error');
+				$(this).attr('placeholder', '');
+			}
+		});
+
+		$(this).find('.consent input[type="checkbox"].required').each(function() {
+			if($(this).prop("checked")){
+				$(this).removeClass('has-error');
+			}
+			else {
+				$(this).addClass('has-error');
+			}
+		});
+
+		if($(this).find('.has-error').length)
+			e.preventDefault();
+		else {
+			var th = $(this);
+			$.ajax({
+				type: "POST",
+				url: "mail.php", 
+				data: th.serialize()
+			}).done(function() {
+				th.addClass("active")
+				th.parent().find('.thanks').fadeIn("slow")
+				setTimeout(function() {
+				// Done Functions
+				th.trigger("reset");
+			}, 1000);
+			});
+			return false;
+		}
+	});
+
+	$(".head__menu").on("click","a", function (event) {
+		event.preventDefault();
+		var id  = $(this).attr('href'),
+		top = $(id).offset().top - 190;
+		$('body,html').animate({scrollTop: top}, 1500);
+	});
+
+	$(".product__bot").on("click",".scroll", function (event) {
+		event.preventDefault();
+		var id  = $(this).attr('href'),
+		top = $(id).offset().top - 190;
+		$('body,html').animate({scrollTop: top}, 1500);
+	});
 
 // Function Runs On NEXT Button Click
 $(".next_btn").click(function() { 
