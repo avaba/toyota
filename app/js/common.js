@@ -56,7 +56,7 @@ jQuery(document).ready(function(){
 		closeBtn: false 
 	});
 
-$(".phone").mask("+7 (999) 999-99-99");
+	$(".phone").mask("+7 (999) 999-99-99");
 
 	$('.callForm').submit(function(e) {
 
@@ -100,11 +100,19 @@ $(".phone").mask("+7 (999) 999-99-99");
 		}
 	});
 
-	$(".head__menu").on("click","a", function (event) {
-		event.preventDefault();
-		var id  = $(this).attr('href'),
-		top = $(id).offset().top - 190;
-		$('body,html').animate({scrollTop: top}, 1500);
+	$('.head__menu').navScroll({
+		scrollSpy: true,
+		activeParent: true,
+		navHeight: 160,
+		activeClassName: 'active'
+	});
+
+	$(".bars").click(function() {
+		$(".menu").slideToggle();
+	});
+
+	$(".menu a").click(function() {
+		$(".menu").slideToggle();
 	});
 
 	$(".product__bot").on("click",".scroll", function (event) {

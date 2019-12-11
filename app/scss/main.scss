@@ -15,7 +15,7 @@ body {
 	font-size: 16px;
 	min-width: 320px;
 	position: relative;
-	line-height: 1.5;
+	line-height: 1.2;
 	font-family: $default-font;
 	overflow-x: hidden;
 	color: $text;
@@ -108,6 +108,13 @@ input, button, textarea, select {
 	width: 100%;
 	z-index: 999;
 	border-bottom: 1px solid $border;
+	.container {
+		position: relative;
+	}
+	&.landingFix {
+		position: fixed;
+		top: 0;
+	}
 	&__logo {
 		display: inline-block;
 	}
@@ -128,8 +135,23 @@ input, button, textarea, select {
 				}
 				a {
 					color: #000;
+					position: relative;
 					&:hover {
 						color: $accent;
+					}
+				}
+				&.active {
+					a {
+						color: $accent;
+						&:before {
+							content: '';
+							position: absolute;
+							height: 5px;
+							width: 100%;
+							top: -34px;
+							left: 0;
+							background: #db061f;
+						}
 					}
 				}
 			}
@@ -302,6 +324,7 @@ input, button, textarea, select {
 			input {
 				display: none;
 				&:checked + span {
+					color: $accent;
 					&:after {
 						opacity: 1;
 						transition: all .3s;
@@ -317,7 +340,7 @@ input, button, textarea, select {
 					content: '';
 					position: absolute;
 					left: 0;
-					top: -2px;
+					top: 0px;
 					width: 27px;
 					height: 27px;
 					border: 1px solid $border;
@@ -330,7 +353,7 @@ input, button, textarea, select {
 					content: '';
 					position: absolute;
 					left: 7px;
-					top: 5px;
+					top: 7px;
 					background: $accent;
 					border-radius: 3px;
 					width: 13px;
@@ -375,6 +398,7 @@ input, button, textarea, select {
 			}
 			.last__text {
 				margin-bottom: 40px;
+				line-height: 150%;
 			}
 			.quiz__btn {
 				position: relative;
@@ -388,13 +412,13 @@ input, button, textarea, select {
 						width: 14px;
 						height: 14px;
 						border-radius: 4px;
-						top: 2px;
+						top: 4px;
 					}
 					&:after {
 						width: 6px;
 						height: 6px;
 						left: 4px;
-						top: 6px;
+						top: 8px;
 					}
 					&:hover {
 						color: $text;
@@ -663,6 +687,12 @@ input, button, textarea, select {
 			padding: 11px 5px;
 			white-space: nowrap;
 			font-size: 0.8em;
+			&.white {
+				background: #f8f8f8;
+				&:hover {
+					background: $accent;
+				}
+			}
 		}
 	}
 }
@@ -991,6 +1021,7 @@ input, button, textarea, select {
 			border-top: 1px solid $border;
 			margin-top: 15px;
 			padding-top: 23px;
+			line-height: 165%;
 			p {
 				position: relative;
 				padding-left: 30px;
@@ -1041,28 +1072,6 @@ input, button, textarea, select {
 					font-size: 0.875em;
 					margin: 0;
 					padding-left: 20px;
-					&:before {
-						content: '';
-						position: absolute;
-						left: 0;
-						top: 2px;
-						width: 12px;
-						height: 12px;
-						border-radius: 4px;
-						background: #fff;
-					}
-					&:after {
-						content: '';
-						position: absolute;
-						left: 3px;
-						top: 5px;
-						width: 6px;
-						height: 6px;
-						background: $accent;
-						border-radius: 2px;
-						opacity: 0;
-						transition: all .2s;
-					}
 					a {
 						color: #000;
 						text-decoration: underline;
@@ -1088,8 +1097,13 @@ input, button, textarea, select {
 	text-align: center;
 	color: #fff;
 	padding: 30px 0;
+	font-size: 0.750em;
 	p {
 		margin: 0;
+	}
+	a {
+		margin-top: 5px;
+		display: inline-block;
 	}
 }
 
@@ -1121,16 +1135,20 @@ label.consent {
 			} 
 		}
 	}
+	span {
+		line-height: 165%;
+	}
 	p {
 		position: relative;
 		font-size: 0.875em;
 		margin: 0;
 		padding-left: 20px;
+		line-height: 165%;
 		&:before {
 			content: '';
 			position: absolute;
 			left: 0;
-			top: 2px;
+			top: 5px;
 			width: 12px;
 			height: 12px;
 			border-radius: 4px;
@@ -1141,7 +1159,7 @@ label.consent {
 			content: '';
 			position: absolute;
 			left: 3px;
-			top: 5px;
+			top: 8px;
 			width: 6px;
 			height: 6px;
 			background: $accent;
