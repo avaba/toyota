@@ -408,6 +408,7 @@ input, button, textarea, select {
 				span {
 					font-size: 0.875em;
 					padding-left: 25px;
+					color: $text;
 					&:before {
 						width: 14px;
 						height: 14px;
@@ -429,7 +430,6 @@ input, button, textarea, select {
 					text-decoration: underline;
 					transition: all .3s;
 					&:hover {
-						text-decoration: none;
 						color: $accent;
 					}
 				}
