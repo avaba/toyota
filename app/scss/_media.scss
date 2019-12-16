@@ -90,6 +90,10 @@
 	.head__menu ul li.active a:before {
 		display: none;
 	}
+
+	.quiz .thanks {
+		min-height: auto;
+	}
 }
 
 // ≥992px
@@ -230,7 +234,6 @@
 	}
 
 	form.bgForm__form.callForm {
-		width: 250px;
 		margin: 0 auto;
 	}
 
@@ -261,7 +264,9 @@
 	.map__form {
 		position: relative;
 		top: 0;
+		left: 0;
 		transform: translate(0);
+		padding: 0 15px;
 	}
 
 	section.map {
@@ -347,6 +352,12 @@
 
 	.map__item {
 		padding: 25px 15px;
+	}
+
+	.fancybox-overlay:before {
+		z-index: 9999;
+		right: 30px;
+		top: 30px;
 	}
 }
 

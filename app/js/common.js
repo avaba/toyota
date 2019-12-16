@@ -24,8 +24,8 @@ jQuery(document).ready(function(){
 			<img src="img/title_picture.jpg" alt="">\
 			<form role="form" class="callBack__inner callForm">\
 			<p class="title">Узнать цену <br> ' + item_name + '</p>\
-			<input type="text" class="required" placeholder="Имя">\
-			<input type="text" class="phone required" placeholder="Номер телефона">\
+			<input type="text" class="name required" placeholder="Имя">\
+			<input type="text" class="phone required" placeholder="Номер телефона" autocomplete="off">\
 			<button class="call w100">Позвоните мне</button>\
 			<label class="consent">\
 			<input type="checkbox" class="required" checked>\
@@ -56,11 +56,45 @@ jQuery(document).ready(function(){
 		closeBtn: false 
 	});
 
-	$(".phone").mask("+7 (999) 999-99-99");
+	var phones = new Numbered('.phone',{
+		mask: '+7 (###) ### - ## - ##',
+		empty: '_',
+		placeholder: false
+	});
+	var classPhone = 'phone';
+	var phoneRegex = /\+7 \([0-9]{3}\) [0-9]{3} - [0-9]{2}\ - [0-9]{2}/g;
+	var phoneInputs = document.getElementsByClassName(classPhone);
+	Array.prototype.forEach.call(phoneInputs, function(element) {
+		element.addEventListener('change', function(e) {
+			var result = e.target.value.match(phoneRegex);
+			if (result === null) {
+				e.target.value = '';
+			}
+		});
+	});
+
+	$('.name').on('keypress', function() {
+		var that = this;
+		setTimeout(function() {
+			var res = /[^а-яА-Яa-zA-Z ]/g.exec(that.value);
+			that.value = that.value.replace(res, '');
+		}, 0);
+	});
 
 	$('.callForm').submit(function(e) {
 
 		$(this).find('input[type="text"].required').each(function() {
+			if(!$(this).val()) {
+				$(this).addClass('has-error');
+				$(this).attr('placeholder', 'Заполните поле');
+			}
+			else {
+				$(this).removeClass('has-error');
+				$(this).attr('placeholder', '');
+			}
+		});
+
+		$(this).find('input[type="number"].required').each(function() {
 			if(!$(this).val()) {
 				$(this).addClass('has-error');
 				$(this).attr('placeholder', 'Заполните поле');
@@ -100,10 +134,17 @@ jQuery(document).ready(function(){
 		}
 	});
 
-	$('.head__menu').navScroll({
+	$('.hide-lg .head__menu').navScroll({
 		scrollSpy: true,
 		activeParent: true,
 		navHeight: 160,
+		activeClassName: 'active'
+	});
+
+	$('.menu .head__menu').navScroll({
+		scrollSpy: true,
+		activeParent: true,
+		navHeight: 110,
 		activeClassName: 'active'
 	});
 
@@ -136,9 +177,15 @@ $(".next_btn").click(function() {
 	}
 });
 
-$(".calc__next").click(function() { 
-	$(this).parent().next().addClass('active');
-	$(this).parent().removeClass('active');
+$('.modelSelect select').change(function() {
+	$(".calc__next").click(function() { 
+		if ($(".modelSelect select :selected").val() == '--') {
+			$(this).closest('fieldset').addClass("error");
+		} else {
+			$(this).closest('fieldset').next().addClass('active');
+			$(this).closest('fieldset').removeClass('active');
+		}
+	});
 });
 
 // Function Runs On PREVIOUS Button Click
@@ -273,8 +320,8 @@ ymaps.ready(function () {
 		balloonContent: 'Ключавто',
 	}, {
 		iconLayout: 'default#imageWithContent',
-		iconImageHref: 'img/map.svg',
-		iconImageSize: [50, 66],
+		iconImageHref: 'img/map.png',
+		iconImageSize: [55, 67],
 		iconImageOffset: [-20, -50],
 		iconContentOffset: [15, 15],
 		iconContentLayout: MyIconContentLayout
@@ -282,5 +329,4 @@ ymaps.ready(function () {
 
 	myMap.geoObjects 
 	.add(myPlacemarkWithContent);
-	myMap.behaviors.disable('scrollZoom'); 
 });

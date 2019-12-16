@@ -1,7 +1,186 @@
-/*
-    jQuery Masked Input Plugin
-    Copyright (c) 2007 - 2015 Josh Bush (digitalbush.com)
-    Licensed under the MIT license (http://digitalbush.com/projects/masked-input-plugin/#license)
-    Version: 1.4.1
-*/
-!function(a){"function"==typeof define&&define.amd?define(["jquery"],a):a("object"==typeof exports?require("jquery"):jQuery)}(function(a){var b,c=navigator.userAgent,d=/iphone/i.test(c),e=/chrome/i.test(c),f=/android/i.test(c);a.mask={definitions:{9:"[0-9]",a:"[A-Za-z]","*":"[A-Za-z0-9]"},autoclear:!0,dataName:"rawMaskFn",placeholder:"_"},a.fn.extend({caret:function(a,b){var c;if(0!==this.length&&!this.is(":hidden"))return"number"==typeof a?(b="number"==typeof b?b:a,this.each(function(){this.setSelectionRange?this.setSelectionRange(a,b):this.createTextRange&&(c=this.createTextRange(),c.collapse(!0),c.moveEnd("character",b),c.moveStart("character",a),c.select())})):(this[0].setSelectionRange?(a=this[0].selectionStart,b=this[0].selectionEnd):document.selection&&document.selection.createRange&&(c=document.selection.createRange(),a=0-c.duplicate().moveStart("character",-1e5),b=a+c.text.length),{begin:a,end:b})},unmask:function(){return this.trigger("unmask")},mask:function(c,g){var h,i,j,k,l,m,n,o;if(!c&&this.length>0){h=a(this[0]);var p=h.data(a.mask.dataName);return p?p():void 0}return g=a.extend({autoclear:a.mask.autoclear,placeholder:a.mask.placeholder,completed:null},g),i=a.mask.definitions,j=[],k=n=c.length,l=null,a.each(c.split(""),function(a,b){"?"==b?(n--,k=a):i[b]?(j.push(new RegExp(i[b])),null===l&&(l=j.length-1),k>a&&(m=j.length-1)):j.push(null)}),this.trigger("unmask").each(function(){function h(){if(g.completed){for(var a=l;m>=a;a++)if(j[a]&&C[a]===p(a))return;g.completed.call(B)}}function p(a){return g.placeholder.charAt(a<g.placeholder.length?a:0)}function q(a){for(;++a<n&&!j[a];);return a}function r(a){for(;--a>=0&&!j[a];);return a}function s(a,b){var c,d;if(!(0>a)){for(c=a,d=q(b);n>c;c++)if(j[c]){if(!(n>d&&j[c].test(C[d])))break;C[c]=C[d],C[d]=p(d),d=q(d)}z(),B.caret(Math.max(l,a))}}function t(a){var b,c,d,e;for(b=a,c=p(a);n>b;b++)if(j[b]){if(d=q(b),e=C[b],C[b]=c,!(n>d&&j[d].test(e)))break;c=e}}function u(){var a=B.val(),b=B.caret();if(o&&o.length&&o.length>a.length){for(A(!0);b.begin>0&&!j[b.begin-1];)b.begin--;if(0===b.begin)for(;b.begin<l&&!j[b.begin];)b.begin++;B.caret(b.begin,b.begin)}else{for(A(!0);b.begin<n&&!j[b.begin];)b.begin++;B.caret(b.begin,b.begin)}h()}function v(){A(),B.val()!=E&&B.change()}function w(a){if(!B.prop("readonly")){var b,c,e,f=a.which||a.keyCode;o=B.val(),8===f||46===f||d&&127===f?(b=B.caret(),c=b.begin,e=b.end,e-c===0&&(c=46!==f?r(c):e=q(c-1),e=46===f?q(e):e),y(c,e),s(c,e-1),a.preventDefault()):13===f?v.call(this,a):27===f&&(B.val(E),B.caret(0,A()),a.preventDefault())}}function x(b){if(!B.prop("readonly")){var c,d,e,g=b.which||b.keyCode,i=B.caret();if(!(b.ctrlKey||b.altKey||b.metaKey||32>g)&&g&&13!==g){if(i.end-i.begin!==0&&(y(i.begin,i.end),s(i.begin,i.end-1)),c=q(i.begin-1),n>c&&(d=String.fromCharCode(g),j[c].test(d))){if(t(c),C[c]=d,z(),e=q(c),f){var k=function(){a.proxy(a.fn.caret,B,e)()};setTimeout(k,0)}else B.caret(e);i.begin<=m&&h()}b.preventDefault()}}}function y(a,b){var c;for(c=a;b>c&&n>c;c++)j[c]&&(C[c]=p(c))}function z(){B.val(C.join(""))}function A(a){var b,c,d,e=B.val(),f=-1;for(b=0,d=0;n>b;b++)if(j[b]){for(C[b]=p(b);d++<e.length;)if(c=e.charAt(d-1),j[b].test(c)){C[b]=c,f=b;break}if(d>e.length){y(b+1,n);break}}else C[b]===e.charAt(d)&&d++,k>b&&(f=b);return a?z():k>f+1?g.autoclear||C.join("")===D?(B.val()&&B.val(""),y(0,n)):z():(z(),B.val(B.val().substring(0,f+1))),k?b:l}var B=a(this),C=a.map(c.split(""),function(a,b){return"?"!=a?i[a]?p(b):a:void 0}),D=C.join(""),E=B.val();B.data(a.mask.dataName,function(){return a.map(C,function(a,b){return j[b]&&a!=p(b)?a:null}).join("")}),B.one("unmask",function(){B.off(".mask").removeData(a.mask.dataName)}).on("focus.mask",function(){if(!B.prop("readonly")){clearTimeout(b);var a;E=B.val(),a=A(),b=setTimeout(function(){B.get(0)===document.activeElement&&(z(),a==c.replace("?","").length?B.caret(0,a):B.caret(a))},10)}}).on("blur.mask",v).on("keydown.mask",w).on("keypress.mask",x).on("input.mask paste.mask",function(){B.prop("readonly")||setTimeout(function(){var a=A(!0);B.caret(a),h()},0)}),e&&f&&B.off("input.mask").on("input.mask",u),A()})}})});
+!function(t, e) {
+    "function" == typeof define && define.amd ? define([], e) : "object" == typeof exports ? module.exports = e() : t.Numbered = e()
+}(this, function() {
+    "use strict";
+    var a = {
+        mask: "+7 (###) ### - ## - ##",
+        numbered: "#",
+        empty: "_",
+        placeholder: !1
+    };
+    return function(t, e) {
+        var g = this;
+        for (var n in "object" != typeof t ? g.inputs = document.querySelectorAll(t) : void 0 !== t.length ? g.inputs = t : g.inputs = [t],
+        g.inputs = Array.prototype.slice.call(g.inputs),
+        e = e || (void 0 !== g.inputs[0].numbered ? g.inputs[0].numbered.params : {}),
+        a)
+            void 0 === e[n] && (e[n] = a[n]);
+        for (var i in g.params = e,
+        g.config = {},
+        g.config.placeholder = g.params.mask.replace(new RegExp(g.params.numbered,"g"), g.params.empty),
+        g.config.numbered = g.params.numbered.replace(/([()[\]\.^\#$|?+-])/g, "\\\\$1"),
+        g.config.numberedCol = g.params.mask.split(g.params.numbered).length - 1,
+        g.config.empty = g.params.empty.replace(/([()[\]\.^\#$|?+-])/g, "\\$1"),
+        g.config.mask = g.params.mask.replace(/([()[\]\.^\#$|?+-])/g, "\\$1").replace(new RegExp(g.config.numbered,"g"), "(\\d)"),
+        g.config.maskNums = g.params.mask.replace(/[^\d]/gi, "").split(""),
+        g.config.maskNumsCol = g.config.maskNums.length,
+        g.config.regexp = new RegExp("^" + g.config.mask + "$"),
+        g.config.events = ["input", "change", "click", "focusin", "blur"],
+        g._eventFire = function(t, e) {
+            if (t.fireEvent)
+                t.fireEvent("on" + e);
+            else {
+                var n = document.createEvent("Events");
+                n.initEvent(e, !0, !1),
+                t.dispatchEvent(n)
+            }
+        }
+        ,
+        g._getSelectionRange = function(t) {
+            var e = {
+                text: "",
+                start: 0,
+                end: 0,
+                length: 0
+            };
+            if (t.setSelectionRange)
+                e.start = t.selectionStart,
+                e.end = t.selectionEnd,
+                e.text = e.start != e.end ? t.value.substring(e.start, e.end) : "";
+            else if (document.selection) {
+                var n;
+                if (t.tagName && "TEXTAREA" === t.tagName) {
+                    var i = document.selection.createRange().duplicate();
+                    n = t.createTextRange();
+                    var r = i.getBookmark();
+                    n.moveToBookmark(r)
+                } else
+                    n = document.selection.createRange().duplicate();
+                for (e.text = n.text; 0 !== n.moveStart("character", -1); e.start++)
+                    ;
+                e.end = e.text.length + e.start
+            }
+            return e.length = e.text.length,
+            e
+        }
+        ,
+        g.magic = function(t) {
+            var e = this.numbered
+              , n = e.input.value || " "
+              , i = n.replace(/[^\d]/gi, "").split("").join("").split("")
+              , r = i.length
+              , o = 0
+              , s = -1
+              , a = -1
+              , l = (g._getSelectionRange(e.input),
+            0)
+              , c = []
+              , u = e.params.mask.split("");
+            for (var d in u) {
+                var p = u[d];
+                d = parseInt(d),
+                l <= e.config.maskNumsCol && p == e.config.maskNums[l] && p == i[o] ? (c.push(p),
+                l++,
+                o++) : p == e.params.numbered ? (s < 0 && (s = d),
+                o < r ? (c.push(i[o]),
+                o++,
+                a = d) : c.push(e.params.empty)) : c.push(p)
+            }
+            n = c.join("");
+            var f = 0 <= a ? a + 1 : s;
+            if ("click" !== t.type && ("blur" !== t.type && "change" !== t.type || o - l != 0 || e.params.placeholder ? e.oldValue === e.input.value && "focusin" !== t.type || (this.value = n) : this.value = ""),
+            "change" !== t.type && "blur" !== t.type && ("click" !== t.type || "focusin" === e.lastEvent && "click" === t.type))
+                if (e.input.setSelectionRange)
+                    e.input.setSelectionRange(f, f);
+                else if (e.input.createTextRange) {
+                    var h = e.input.createTextRange();
+                    h.collapse(!0),
+                    h.moveEnd("character", f),
+                    h.moveStart("character", f),
+                    h.select()
+                }
+            return e.oldValue = this.value,
+            e.lastEvent = t.type,
+            t.target
+        }
+        ,
+        g.inputs) {
+            var r = g.inputs[i]
+              , o = !1;
+            if ("оbject" != typeof r.numbered && void 0 === r.numbered || (o = !0),
+            r.numbered = {
+                input: g.inputs[i],
+                config: g.config,
+                params: g.params,
+                oldValue: !1
+            },
+            !o) {
+                for (var s in g.config.events)
+                    r.addEventListener(g.config.events[s], g.magic);
+                g._eventFire(r, "blur")
+            }
+            g.inputs[i] = r
+        }
+        return g.destroy = function() {
+            var t = this;
+            for (var e in t.inputs) {
+                var n = t.inputs[e];
+                for (var i in t.config.events)
+                    n.removeEventListener(t.config.events[i], t.magic),
+                    n.numbered = null
+            }
+            return null
+        }
+        ,
+        g.validate = function(t) {
+            var e = t || !1
+              , n = 1 < this.inputs.length && []
+              , i = !1 !== e ? [e] : this.inputs;
+            for (var r in i) {
+                var o;
+                i[r],
+                o = i[r].numbered.config.regexp.test(i[r].numbered.input.value) ? 1 : "" === i[r].numbered.input.value || i[r].numbered.input.value === i[r].numbered.config.placeholder ? 0 : -1,
+                1 < i.length ? n.push(o) : n = o
+            }
+            return n
+        }
+        ,
+        g.reInit = function() {
+            var t = 1 < this.inputs.length && [];
+            for (var e in this.inputs) {
+                var n = this.inputs[e];
+                this._eventFire(n, "blur")
+            }
+            return t
+        }
+        ,
+        g.setVal = function(t) {
+            var e = 1 < this.inputs.length && [];
+            for (var n in this.inputs) {
+                var i = this.inputs[n];
+                i.value = t,
+                this._eventFire(i, "blur")
+            }
+            return e
+        }
+        ,
+        g.getVal = function(t) {
+            var e = t || !1
+              , n = [];
+            for (var i in this.inputs) {
+                var r = this.inputs[i]
+                  , o = r.value;
+                if (e)
+                    if (0 < this.validate(r)) {
+                        var s = o.match(this.config.regexp);
+                        o = s.slice(1, s.length).join("")
+                    } else
+                        o = r.value.replace(/[^\d]/gi, "");
+                n.push(o)
+            }
+            return 1 < n.length ? n : n[0]
+        }
+        ,
+        g
+    }
+}),

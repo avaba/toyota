@@ -274,6 +274,7 @@ input, button, textarea, select {
 		}
 		p {
 			margin: 0;
+			line-height: 128%;
 			&:first-of-type {
 				margin-bottom: 10px;
 			}
@@ -556,6 +557,11 @@ input, button, textarea, select {
 	}
 	.thanks {
 		min-height: 450px;
+		padding: 50px 0;
+		text-align: center;
+		img {
+			margin-bottom: 15px;
+		}
 	}
 }
 
@@ -942,6 +948,7 @@ input, button, textarea, select {
 			list-style: none;
 			box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.12);
 			border-radius: 4px;
+			max-height: 230px !important;
 			&::-webkit-scrollbar { 
 				width: 8px; 
 				height: 8px;
@@ -1004,10 +1011,9 @@ input, button, textarea, select {
 	}
 	&__form {
 		position: absolute;
-		left: 0;
+		left: 40px;
 		top: 50%;
 		transform: translate(0, -50%);
-		width: 100%;
 	}
 	&__item {
 		position: relative;
@@ -1132,6 +1138,7 @@ label.consent {
 		&.has-error + p {
 			&:before {
 				border-color: $accent;
+				box-shadow: 0px 0px 0px 2px $accent;
 			} 
 		}
 	}
@@ -1241,7 +1248,7 @@ label.consent {
 	display: none;
 }
 
-input[type="text"].has-error {
+input[type="text"].has-error, input[type="number"].has-error {
 	&::placeholder {color: #E20000;}
 	&::-webkit-input-placeholder {color:#E20000;}
 	&::-moz-placeholder {color:#E20000;}
@@ -1260,6 +1267,15 @@ input[type="text"].has-error {
 	min-height: 96px;
 	p {
 		margin: 0;
+		line-height: 150%;
+	}
+}
+
+input[type="number"] {
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0; 
 	}
 }
 

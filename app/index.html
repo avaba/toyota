@@ -81,7 +81,7 @@
 									<input type="hidden" name="form_subject" value="Заявка с главного экрана сайта Ключавто">
 									<!-- END Hidden Required Fields -->
 									<div class="home__form_inner">
-										<input class="phone required" name="Номер телефона" type="text" placeholder="Номер телефона">
+										<input class="phone required" name="Номер телефона" type="text" placeholder="Номер телефона" autocomplete="off">
 										<button type="submit" class="call">Зарезервировать</button>
 										<label class="consent">
 											<input type="checkbox" class="required" checked>
@@ -306,7 +306,7 @@
 								</fieldset>
 								<fieldset class="quiz__item">
 									<p class="quiz__subtitle">Шаг 4 из 5</p>
-									<p class="h3 black">Планируете ли сдавать свой авто в Трейд-ин<br> (обмен старого авто на новый)</p>
+									<p class="h3">Планируете ли сдавать свой авто в Трейд-ин<br> (обмен старого авто на новый)</p>
 									<div class="row inputBlock">
 										<div class="col-md-6">
 											<label>
@@ -334,7 +334,7 @@
 								</fieldset>
 								<fieldset class="quiz__item">
 									<p class="quiz__subtitle">Шаг 5 из 5</p>
-									<p class="h3 black">Выберите способ покупки</p>
+									<p class="h3">Выберите способ покупки</p>
 									<div class="row inputBlock">
 										<div class="col-md-6">
 											<label>
@@ -374,22 +374,22 @@
 										</div>
 									</div>
 									<p class="last__text">Пожалуйста, укажите номер вашего телефона.<br> Вы получите подборку по интересующим вас <br>параметрам + информацию об акциях</p>
-									<input type="text" class="phone required" placeholder="Номер телефона">
+									<input type="text" class="phone required" placeholder="Номер телефона" autocomplete="off">
 									<div class="quiz__btn">
 										<button class="submit_btn call done" name="next" type="sumbit">Получить подборку</button>
 									</div>
 									<label class="consent">
 										<input type="checkbox" class="required" name="soglas" checked>
-										<span>Я даю согласие на обработку моих<br> <a href="#">персональных данных</a></span>
+										<p>Я даю согласие на обработку моих<br> <a href="#">персональных данных</a></p>
 									</label>
 								</fieldset>
 							</form>
 							<div class="thanks">
 								<div class="align-items-center row">
-									<div class="col-auto">
-										<img src="img/check.png" alt="">
+									<div class="col-12">
+										<img src="img/сheck2.png" alt="">
 									</div>
-									<div class="col-auto">
+									<div class="col-12">
 										<h3>Спасибо!</h3>
 										<p>Ваша заявка принята. Мы свяжемся<br> с вами в ближайшее время</p>
 									</div>
@@ -617,7 +617,7 @@
 										<div class="col-xl-3 col-md-6">
 											<span class="bgForm__form_title">Модель</span>
 											<select>
-												<option data-price="img/model1.png" selected disabled>--</option>
+												<option data-price="img/model1.png" disabled>--</option>
 												<option data-price="img/model1.png">Camry</option>
 												<option data-price="img/model2.png">RAV4</option>
 												<option data-price="img/model3.png">Corolla</option>
@@ -632,14 +632,50 @@
 										</div>
 										<div class="col-xl-3 col-md-6">
 											<span class="bgForm__form_title">Предложение (в рублях)</span>
-											<input type="text" placeholder="Напишите предложение">
+											<input class="required" type="number" placeholder="Напишите предложение">
 										</div>
 										<div class="col-xl-3 col-md-6">
 											<span class="bgForm__form_title">Ваш телефон</span>
-											<input class="phone required" type="text" placeholder="+7 (___) ___-__-__">
+											<input class="phone required" type="text" placeholder="+7 (___) ___ - __ - __" autocomplete="off">
 										</div>
 										<div class="col-xl-3 col-md-6">
 											<button class="call w100">Отправить</button>
+										</div>
+									</div>
+									<label class="consent">
+										<input type="checkbox" class="required" checked>
+										<p>Я даю согласие на обработку моих <a href="#">персональных данных</a></p>
+									</label>
+								</form>
+								<div class="thanks">
+									<div class="align-items-center row">
+										<div class="col-12">
+											<img src="img/check.png" alt="">
+										</div>
+										<div class="col-12">
+											<h3>Спасибо!</h3>
+											<p>Ваша заявка принята. Мы свяжемся<br> с вами в ближайшее время</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="bgForm margin">
+					<div class="container">
+						<div class="justify-content-center row">
+							<div class="col-md-auto">
+								<form class="bgForm__form callForm">
+									<h2>Не можете определиться? <br>Пройдите тест-драйв</h2>
+									<div class="align-items-end row">
+										<div class="col-md-6">
+											<span class="bgForm__form_title">Ваш телефон</span>
+											<input class="phone required" type="text" placeholder="+7 (___) ___ - __ - __" autocomplete="off">
+										</div>
+										<div class="col-md-6">
+											<button class="call w100">Записаться</button>
 										</div>
 									</div>
 									<label class="consent">
@@ -715,7 +751,7 @@
 											</div>
 										</div>
 										<p class="last__text">Пожалуйста, укажите номер вашего телефона.<br> Вы получите подборку предложений от банков<br> по условиям кредитования</p>
-										<input type="text" class="phone required" placeholder="Номер телефона">
+										<input type="text" class="phone required" placeholder="Номер телефона" autocomplete="off">
 										<div class="quiz__btn">
 											<button class="submit_btn call done" name="next" type="sumbit">Получить подборку</button>
 										</div>
@@ -751,30 +787,28 @@
 				<section class="map">
 					<div id="map"></div>
 					<div class="map__form">
-						<div class="container">
-							<div id="land4" class="map__item">
-								<h2>Всегда вам рады в нашем офисе</h2>
-								<div class="map__item_con">
-									<p><img src="img/Icon_address.svg" alt="Адрес">Москва, Ломоносовский<br> проспект, 298/9</p>
-									<p><img src="img/Icon_phone.svg" alt="Телефон"><a href="tel:88002000000">8 800 200 00 00</a></p>
-								</div>
-								<form role="form" class="callForm">
-									<input type="text" class="phone required" placeholder="Номер телефона">
-									<button class="call w100">Заказать звонок</button>
-									<label class="consent">
-										<input type="checkbox" class="required" checked>
-										<p>Я даю согласие на обработку моих <a href="#">персональных данных</a></p>
-									</label>
-								</form>
-								<div class="thanks">
-									<div class="align-items-center row">
-										<div class="col-12">
-											<img src="img/сheck2.png" alt="">
-										</div>
-										<div class="col-12">
-											<h3>Спасибо!</h3>
-											<p>Ваша заявка принята. Мы свяжемся<br> с вами в ближайшее время</p>
-										</div>
+						<div id="land4" class="map__item">
+							<h2>Всегда вам рады в нашем офисе</h2>
+							<div class="map__item_con">
+								<p><img src="img/Icon_address.svg" alt="Адрес">Москва, Ломоносовский<br> проспект, 298/9</p>
+								<p><img src="img/Icon_phone.svg" alt="Телефон"><a href="tel:88002000000">8 800 200 00 00</a></p>
+							</div>
+							<form role="form" class="callForm">
+								<input type="text" class="phone required" placeholder="Номер телефона" autocomplete="off">
+								<button class="call w100">Заказать звонок</button>
+								<label class="consent">
+									<input type="checkbox" class="required" checked>
+									<p>Я даю согласие на обработку моих <a href="#">персональных данных</a></p>
+								</label>
+							</form>
+							<div class="thanks">
+								<div class="align-items-center row">
+									<div class="col-12">
+										<img src="img/сheck2.png" alt="">
+									</div>
+									<div class="col-12">
+										<h3>Спасибо!</h3>
+										<p>Ваша заявка принята. Мы свяжемся<br> с вами в ближайшее время</p>
 									</div>
 								</div>
 							</div>
@@ -796,8 +830,8 @@
 				<img src="img/title_picture.jpg" alt="">
 				<form role="form" class="callBack__inner callForm">
 					<p class="title">Заказать звонок</p>
-					<input type="text" class="required" placeholder="Имя">
-					<input type="text" class="phone required" placeholder="Номер телефона">
+					<input type="text" class="name required" placeholder="Имя">
+					<input type="text" class="phone required" placeholder="Номер телефона" autocomplete="off">
 					<button class="call w100">Позвоните мне</button>
 					<label class="consent">
 						<input type="checkbox" class="required" checked>
